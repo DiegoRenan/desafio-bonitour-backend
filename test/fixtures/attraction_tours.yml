@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  checkin: 2019-07-17
+  houra: MyString
+  people: 1
+  attraction: one
+  tour: one
+
+two:
+  checkin: 2019-07-17
+  houra: MyString
+  people: 1
+  attraction: two
+  tour: two
