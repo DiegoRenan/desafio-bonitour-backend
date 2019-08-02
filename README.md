@@ -34,6 +34,15 @@ Essa tarefa vai criar um tabela no banco de dados insirindo os passeios obtidos 
  
 
 <h2>Endpoints</h2>
+
+<h6>
+  Formato das resquests e reponses da API seguem o padrão das especificações Json API.
+  Para facilitar o entendimento nem algumas requests não seguem as recomendações da 
+  especificação.
+  Dessa forma, a inclusão de Accept: application/json na Header é obrigatório nas requests
+  como segue.
+</h6>
+
 <hr></hr>
 
 1. Cria um Roteiro inserindo os passeios randomico seguindo o algoritmo da applicação 
@@ -157,3 +166,5 @@ Essa tarefa vai criar um tabela no banco de dados insirindo os passeios obtidos 
 
 <h4>Utilize o link abaixo para testar os endpoints via Postman</h4>
 https://www.getpostman.com/collections/6ec7acf4a62255045f7a
+
+Ou abre o Arquivo postman.html para testar via browser
