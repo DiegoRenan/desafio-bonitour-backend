@@ -45,7 +45,7 @@ Essa tarefa vai criar um tabela no banco de dados insirindo os passeios obtidos 
 </code>
 </li>
 <li>
-Headers
+<strong>Headers</strong>
 <br />
 <code>
   Content-Type	application/json
@@ -54,7 +54,7 @@ Headers
 </code>
 </li>
 <li>
-Body
+<strong>Body</strong>
 <br />
 <code>
   {
@@ -74,7 +74,7 @@ Body
 </code>
 </li>
 <li>
-Headers
+<strong>Headers</strong>
 <br />
 <code>
   Accept	application/json
@@ -82,7 +82,7 @@ Headers
 </code>
 </li>
 <li>
-Body
+<strong>Body</strong>
 <br />
 <code>
   {
@@ -103,7 +103,7 @@ Body
 </code>
 </li>
 <li>
-Headers
+<strong>Headers</strong>
 <br />
 <code>
   Accept	application/json
@@ -111,7 +111,7 @@ Headers
 </code>
 </li>
 <li>
-Body
+<strong>Body</strong>
 <br />
 <code>
 
@@ -127,7 +127,7 @@ Body
 </code>
 </li>
 <li>
-Headers
+<strong>Headers</strong>
 <br />
 <code>
   Content-Type	application/json
@@ -137,7 +137,7 @@ Headers
 </li>
 
 <li>
-Body
+<strong>Body</strong>
 <br />
 <code>
 {
