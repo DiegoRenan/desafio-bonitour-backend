@@ -9,12 +9,18 @@ module V1
 
     # POST /tours/1/attraction
     def create
-      puts "checkin"
-      puts attraction_params[:data]
       if Tour.has_intersection?(attraction_params[:data], attraction_params[:checkin], @tour)
         render json: @tour.errors, status: :unprocessable_entity
       else
-        @tour.attraction_tours << AttractionTour.new(attraction_params)
+        checkout = Tour.provide_checkout( attraction_params[:attraction_id],
+                                          attraction_params[:data], 
+                                          attraction_params[:checkin], )
+
+        @tour.attraction_tours << AttractionTour.new( :data => attraction_params[:data], 
+                                                      :checkin => attraction_params[:checkin],
+                                                      :checkout => checkout,
+                                                      :attraction_id => attraction_params[:attraction_id]
+                                                      )
 
         if @tour.save
           render json: @tour.attraction_tours, status: :created
@@ -38,7 +44,7 @@ module V1
       end
 
       def attraction_params
-        ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:data, :checkin, :checkout, :attraction_id])
+        ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:data, :checkin, :attraction_id])
       end
   end
 end

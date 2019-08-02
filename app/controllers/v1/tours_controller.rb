@@ -102,18 +102,15 @@ module V1
       end
 
       def save_attraction(tour, attraction, current_date, hour)
-        id = Attraction.where('code = ?', attraction["id"]).take.id
-        attraction = Attraction.find(id)
+        attraction_id = Attraction.where('code = ?', attraction["id"]).take.id
+        checkout = Tour.provide_checkout(attraction_id, current_date, hour)
         
-        checkout = Tour.format_checkout(current_date, hour, attraction.duration)
-        checkout = "#{checkout.hour}:#{checkout.min}"
-
         ActiveRecord::Base.transaction do
           tour.attraction_tours.create!(
             data: current_date,
             checkin: hour,
             checkout: checkout,
-            attraction_id: id)
+            attraction_id: attraction_id)
         end
       end
   end

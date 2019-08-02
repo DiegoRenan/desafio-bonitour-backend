@@ -53,4 +53,11 @@ class Tour < ApplicationRecord
       Time.parse("#{date} #{checkin}") + duration * 60
     end
 
+    def self.provide_checkout(attraction_id, date, hour)
+      attraction = Attraction.find(attraction_id)
+      
+      checkout = Tour.format_checkout(date, hour, attraction.duration)
+      "#{checkout.hour}:#{checkout.min}"
+    end
+
 end
