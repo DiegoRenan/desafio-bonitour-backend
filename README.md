@@ -15,79 +15,115 @@
 <code>
     git clone https://github.com/DiegoRenan/desafio-bonitour-backend.git <br />
     cd softplan
+
 </code>
 
 2. Instale as dependencias dentro da pasta do 
 <code>
     cd desafio-bonitour-backend
     bundle install
+
 </code>
 
 3. Rode as Task Setup para preparar a base de dados da applicação 
+Essa tarefa vai criar um tabela no banco de dados insirindo os passeios obtidos do Heroku
 <code>
     rails dev:setup
-</code>
- Essa tarefa vai criar um tabela no banco de dados insirindo os passeios obtidos do Heroku
 
+</code>
+ 
 
 <h2>Endpoints</h2>
 <hr></hr>
 
 1. Cria um Roteiro inserindo os passeios randomico seguindo o algoritmo da applicação 
+
+<li>
 <code>
   POST localhost:3000/v1/create_tour
+
 </code>
+</li>
+<li>
 Headers
 <code>
   Content-Type	application/json
   Accept	application/json
+
 </code>
+</li>
+<li>
 Body
 <code>
   {
     "start_date": "2019-12-06",
     "end_date": "2019-12-09"
   }
+
 </code>
+</li>
 
 2. Retorna os passeios de um Roteiro 
+<li>
 <code>
   GET localhost:3000/v1/tours/1/attractions
 </code>
+</li>
+<li>
 Headers
 <code>
   Accept	application/json
+
 </code>
+</li>
+<li>
 Body
 <code>
   {
 	  "start_date": "2019-12-06",
 	  "end_date": "2019-12-09"
   }
+
 </code>
+</li>
 
 3. Delete um passeio do roteiro 
+<li>
 <code>
   DELETE localhost:3000/v1/tours/1/attraction/1
+
 </code>
+</li>
+<li>
 Headers
 <code>
   Accept	application/json
+
 </code>
+</li>
+<li>
 Body
 <code>
 
 </code>
+</li>
 
 4. Insere um passeio no Roteiro
+<li>
 <code>
   POST localhost:3000/v1/tours/1/attraction
 </code>
+</li>
+<li>
 Headers
 <code>
   Content-Type	application/json
   Accept	application/json
+
 </code>
+</li>
+
+<li>
 Body
 <code>
 {
@@ -101,7 +137,9 @@ Body
         }
     }
 }
+
 </code>
+</li>
 
-
+<h4>Utilize o link abaixo para testar os endpoints via Postman</h4>
 https://www.getpostman.com/collections/6ec7acf4a62255045f7a
