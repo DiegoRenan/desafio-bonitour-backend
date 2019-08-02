@@ -34,6 +34,9 @@ gem 'rest-client'
 # ActiveModel::Serializer implementation and Rails hooks #https://github.com/rails-api/active_model_serializers/tree/0-10-stable
 gem 'active_model_serializers', '~> 0.10.0'
 
+# A plugin for versioning Rails based RESTful APIs. 
+gem 'versionist'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
