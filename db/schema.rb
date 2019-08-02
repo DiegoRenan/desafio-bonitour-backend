@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 2019_07_17_122257) do
 
   create_table "attraction_tours", force: :cascade do |t|
-    t.date "checkin"
-    t.string "houra"
-    t.integer "people"
+    t.date "data"
+    t.string "checkin"
+    t.string "checkout"
     t.integer "attraction_id"
     t.integer "tour_id"
     t.datetime "created_at", null: false

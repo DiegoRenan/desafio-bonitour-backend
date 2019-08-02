@@ -11,8 +11,8 @@
 #
 
 class Tour < ApplicationRecord
-  hast_many :attraction_tours
-  
+  has_many :attraction_tours
+
   def self.pull_attractions(url)
     begin
       response = RestClient::Request.execute(

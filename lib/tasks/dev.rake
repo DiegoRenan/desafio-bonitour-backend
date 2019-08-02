@@ -1,9 +1,16 @@
 namespace :dev do
   desc "Cria passeios a partir do endpoint servidor"
   task setup: :environment do
+
+    puts "Resetando o banco de dados..."
+    
+    %x(rails db:drop db:create db:migrate)
+    
+    puts "Buscando attractions no servidor..."
+
     response = Tour.pull_attractions("https://bonitour-test-api.herokuapp.com/attractions")
 
-    puts "Inserindo Attractions..."
+    puts "Inserindo Attractions no banco de dados..."
     if response.code == 200
       attractions =  JSON.parse(response.body)
     
