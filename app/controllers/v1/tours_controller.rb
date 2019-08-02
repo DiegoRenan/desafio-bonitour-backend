@@ -1,12 +1,14 @@
 module V1
   class ToursController < ApplicationController
+    include ErrorSerializer
+    
     before_action :set_tour, only: [:show, :update, :destroy]
 
     # POST /create_tour
     def create_tour
       @tour = Tour.new(tour_params)
       
-      render json: @tour.errors, status: :unprocessable_entity unless @tour.save
+      render json: ErrorSerializer.serialize(@tour.errors), status: :unprocessable_entity unless @tour.save
 
       base_url = "https://bonitour-test-api.herokuapp.com/attractions"
       
@@ -20,15 +22,10 @@ module V1
         attractions_server.push(JSON.parse(response.body)) if response.code == 200
       end
       
-      if @tour.save
-        
-        # save attractions into Tour
-        sort_attractions(attractions_server, @tour)
+      # save attractions into Tour
+      sort_attractions(attractions_server, @tour)
 
-        render json: @tour, include: [:attraction_tours], status: :created 
-      else
-        render json: @tour.errors, status: :unprocessable_entity
-      end
+      render json: @tour, include: [:attraction_tours], status: :created 
     end
 
     # GET /tours/1

@@ -13,6 +13,11 @@
 #
 
 class AttractionTour < ApplicationRecord
+  #validations
+  validates_presence_of :data
+  validates_presence_of :checkin
+  validates_presence_of :attraction_id
+
   belongs_to :attraction
   belongs_to :tour
 end

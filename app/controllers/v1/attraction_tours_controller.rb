@@ -1,5 +1,7 @@
 module V1
   class AttractionToursController < ApplicationController
+    include ErrorSerializer
+
     before_action :set_tour
 
     # GET /tours/1/attractions
@@ -10,7 +12,8 @@ module V1
     # POST /tours/1/attraction
     def create
       if Tour.has_intersection?(attraction_params[:data], attraction_params[:checkin], @tour)
-        render json: @tour.errors, status: :unprocessable_entity
+        @tour.errors.add(:"choque de horarios", "O passeio não foi adicionado por não possuir disponiblidade dentro do período informado")
+        render json: ErrorSerializer.serialize(@tour.errors), status: :unprocessable_entity
       else
         checkout = Tour.provide_checkout( attraction_params[:attraction_id],
                                           attraction_params[:data], 
@@ -25,7 +28,7 @@ module V1
         if @tour.save
           render json: @tour.attraction_tours, status: :created
         else
-          render json: @tour.errors, status: :unprocessable_entity
+          render json: ErrorSerializer.serialize(@tour.errors), status: :unprocessable_entity
         end
       end
 
