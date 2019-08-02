@@ -46,6 +46,7 @@ Essa tarefa vai criar um tabela no banco de dados insirindo os passeios obtidos 
 </li>
 <li>
 Headers
+<br />
 <code>
   Content-Type	application/json
   Accept	application/json
@@ -54,6 +55,7 @@ Headers
 </li>
 <li>
 Body
+<br />
 <code>
   {
     "start_date": "2019-12-06",
@@ -61,7 +63,9 @@ Body
   }
 
 </code>
+<br />
 </li>
+<br />
 
 2. Retorna os passeios de um Roteiro 
 <li>
@@ -71,6 +75,7 @@ Body
 </li>
 <li>
 Headers
+<br />
 <code>
   Accept	application/json
 
@@ -78,6 +83,7 @@ Headers
 </li>
 <li>
 Body
+<br />
 <code>
   {
 	  "start_date": "2019-12-06",
@@ -85,7 +91,9 @@ Body
   }
 
 </code>
+<br />
 </li>
+<br />
 
 3. Delete um passeio do roteiro 
 <li>
@@ -96,6 +104,7 @@ Body
 </li>
 <li>
 Headers
+<br />
 <code>
   Accept	application/json
 
@@ -103,12 +112,15 @@ Headers
 </li>
 <li>
 Body
+<br />
 <code>
 
 </code>
 </li>
-
+<br />
+<br />
 4. Insere um passeio no Roteiro
+
 <li>
 <code>
   POST localhost:3000/v1/tours/1/attraction
@@ -116,6 +128,7 @@ Body
 </li>
 <li>
 Headers
+<br />
 <code>
   Content-Type	application/json
   Accept	application/json
@@ -125,6 +138,7 @@ Headers
 
 <li>
 Body
+<br />
 <code>
 {
     "data": 
@@ -137,7 +151,7 @@ Body
         }
     }
 }
-
+<br />
 </code>
 </li>
 
