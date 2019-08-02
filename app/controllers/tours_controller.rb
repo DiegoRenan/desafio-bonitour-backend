@@ -1,6 +1,7 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :update, :destroy]
 
+  # POST /create_tour
   def create_tour
     @tour = Tour.new(tour_params)
     
@@ -20,7 +21,6 @@ class ToursController < ApplicationController
       attractions_server.push(JSON.parse(response.body)) if response.code == 200
     end
     
-    
     if @tour.save
       
       # save attractions into Tour
@@ -32,6 +32,7 @@ class ToursController < ApplicationController
     end
   end
 
+  # GET /tours/1
   def show
     render json: @tour, include: [:attraction_tours]
   end
