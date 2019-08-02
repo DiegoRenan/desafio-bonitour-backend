@@ -36,8 +36,8 @@ Essa tarefa vai criar um tabela no banco de dados insirindo os passeios obtidos 
 <h2>Endpoints</h2>
 
 <h6>
-  Formato das resquests e reponses da API seguem o padrão das especificações Json API.
-  Para facilitar o entendimento nem algumas requests não seguem as recomendações da 
+  O Formato das resquests e reponses da API seguem o padrão das especificações Json API.
+  Para facilitar o entendimento algumas requests não seguem as recomendações da 
   especificação.
   Dessa forma, a inclusão de Accept: application/json na Header é obrigatório nas requests
   como segue.
