@@ -8,13 +8,20 @@ class AttractionToursController < ApplicationController
 
   # POST /tours/1/attraction
   def create
-    @tour.attraction_tours << AttractionTour.new(attraction_params)
-
-    if @tour.save
-      render json: @tour.attraction_tours, status: :created
-    else
+    puts "checkin"
+    puts attraction_params[:data]
+    if Tour.has_intersection?(attraction_params[:data], attraction_params[:checkin], @tour)
       render json: @tour.errors, status: :unprocessable_entity
+    else
+      @tour.attraction_tours << AttractionTour.new(attraction_params)
+
+      if @tour.save
+        render json: @tour.attraction_tours, status: :created
+      else
+        render json: @tour.errors, status: :unprocessable_entity
+      end
     end
+
   end
 
   # DELETE /tours/1/attraction/1

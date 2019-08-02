@@ -9,8 +9,6 @@ class ToursController < ApplicationController
 
     base_url = "https://bonitour-test-api.herokuapp.com/attractions"
     
-    attraction_tours = @tour.attraction_tours.all 
-
     # Array to keep the attractions from heroku endpoint
     attractions_server = Array.new
 
@@ -40,7 +38,7 @@ class ToursController < ApplicationController
   private
 
     def tour_params
-      params.require(:tour).permit(:start_date, :end_date, :people)
+      params.require(:tour).permit(:name, :start_date, :end_date)
     end
 
     def set_tour
@@ -67,7 +65,7 @@ class ToursController < ApplicationController
           current_date = (Date.parse(current_date) + 1.day).strftime("%Y-%m-%d")
           horario = 0
           index += 1
-        elsif has_intersection?(current_date, hour, tour)
+        elsif Tour.has_intersection?(current_date, hour, tour)
           # if this hour has intersection in tour look for the next period of the time
           horario += 1
         else
@@ -106,7 +104,7 @@ class ToursController < ApplicationController
       id = Attraction.where('code = ?', attraction["id"]).take.id
       attraction = Attraction.find(id)
       
-      checkout = format_checkout(current_date, hour, attraction.duration)
+      checkout = Tour.format_checkout(current_date, hour, attraction.duration)
       checkout = "#{checkout.hour}:#{checkout.min}"
 
       ActiveRecord::Base.transaction do
@@ -118,26 +116,5 @@ class ToursController < ApplicationController
       end
     end
 
-    def has_intersection?(date, hour, tour)
-      current_date = Time.parse("#{date} #{hour}")
-      has_intersection = false
-
-      return has_intersection if !tour.attraction_tours.where('data = ?', date).exists?
-      
-      tour.attraction_tours.each do |att|
-        checkin = "#{att.data} #{att.checkin}".to_time
-        checkout = format_checkout(att.data, att.checkin, att.attraction.duration)     
-        if current_date.between?(checkin, checkout)
-          has_intersection = true 
-          break
-        end
-      end
-
-      return has_intersection
-    end
-
-    def format_checkout(date, checkin, duration)
-      Time.parse("#{date} #{checkin}") + duration * 60
-    end
 end
 
