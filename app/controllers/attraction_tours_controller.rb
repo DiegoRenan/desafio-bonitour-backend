@@ -8,17 +8,29 @@ class AttractionToursController < ApplicationController
 
   # POST /tours/1/attraction
   def create
+    @tour.attraction_tours << AttractionTour.new(attraction_params)
+
+    if @tour.save
+      render json: @tour.attraction_tours, status: :created
+    else
+      render json: @tour.errors, status: :unprocessable_entity
+    end
   end
 
-  # DELETE /tours/1/attractions/1
+  # DELETE /tours/1/attraction/1
   def destroy
    @attraction_tour = @tour.attraction_tours.find(params[:id])
    @attraction_tour.destroy
   end
 
   private
+    
     def set_tour
       @tour = Tour.find(params[:tour_id])
+    end
+
+    def attraction_params
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:data, :checkin, :checkout, :attraction_id])
     end
 
 end
